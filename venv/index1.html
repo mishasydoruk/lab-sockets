@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="data"></p>
+    <input id="inp" type="text"/>
+    <button onclick="sendMsg()">Send</button>
+    <script>
+    var first = true;
+        const socket = new WebSocket('ws://localhost:5000');
+
+    socket.addEventListener('open', function (event) {
+});
+
+    socket.addEventListener('message', function (event) {
+
+    document.getElementById("data").innerHTML+=event.data+'<br>'
+    });
+    const sendMsg = () =>
+    {
+    var msg = document.getElementById("inp").value
+    if(msg != "" )
+    {
+        socket.send(msg);
+        document.getElementById("inp").value = "";
+    }
+    }
+    </script>
+</body>
+</html>
